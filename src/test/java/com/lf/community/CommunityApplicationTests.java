@@ -26,8 +26,8 @@ class CommunityApplicationTests {
         user.setCreateTime(new Date());
         user.setActivationCode("testcode");
         user.setHeaderUrl("http://images.nowcoder.com/head/150t.png");
-        int i = userService.insertUser(user);
-        System.out.println("执行结果"+i);
+//        int i = userService.insertUser(user);
+//        System.out.println("执行结果"+i);
     }
 
 }
