@@ -2,8 +2,10 @@ package com.lf.community;
 
 import com.lf.community.dao.DiscussPostMapper;
 import com.lf.community.dao.LoginTicketMapper;
+import com.lf.community.dao.MessageMapper;
 import com.lf.community.entity.DiscussPost;
 import com.lf.community.entity.LoginTicket;
+import com.lf.community.entity.Message;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +26,8 @@ public class MapperTest {
     private DiscussPostMapper discussPostMapper;
     @Autowired
     private LoginTicketMapper loginTicketMapper;
+    @Autowired
+    private MessageMapper messageMapper;
     @Test
     public void test(){
         List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(149, 0, 10);
@@ -56,5 +60,27 @@ public class MapperTest {
         System.out.println(ticket);
         int abc = loginTicketMapper.updateStatus("abc", 1);
         System.out.println(abc);
+    }
+    
+    @Test
+    public void testLetters1(){
+        List<Message> messages = messageMapper.selectConversations(111, 0, 20);
+        for(Message message : messages){
+            System.out.println(message);
+        }
+        int count = messageMapper.selectConversationCount(111);
+        System.out.println(count);
+        List<Message> letters = messageMapper.selectLetters("111_112", 0, 10);
+        for (Message message : letters){
+            System.out.println(message);
+        }
+        int re = messageMapper.selectLetterCount("111_112");
+        System.out.println(re);
+
+        int unreadCo = messageMapper.selectLetterUnreadCount(131, null);
+        System.out.println(unreadCo);
+        int danCo = messageMapper.selectLetterUnreadCount(131, "111_131");
+        System.out.println(danCo);
+
     }
 }
