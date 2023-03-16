@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,12 +35,17 @@ public class HomeController implements CommunityConstant {
     private UserService userService;
     @Autowired
     private LikeService likeService;
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String root(){
+        return "forward:/index";
+    }
     
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-        public String getIndexPage(Model model, Page page){
+        public String getIndexPage(Model model, Page page,@RequestParam(name="orderMode",defaultValue = "0") int orderMode){
         page.setRows(discussPostService.findDiscussPostRows(0));
-        page.setPath("/index");
-        List<DiscussPost> discussPosts = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit());
+        page.setPath("/index?orderMode=" +orderMode);
+        List<DiscussPost> discussPosts = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit(),orderMode);
         List<Map<String,Object>> discussPostsList = new ArrayList<>(); 
         if (discussPosts != null){
             for(DiscussPost discussPost : discussPosts){
@@ -56,11 +61,19 @@ public class HomeController implements CommunityConstant {
             }
         }
         model.addAttribute("discussPostList",discussPostsList);
+        model.addAttribute("orderMode",orderMode);
         return "index";
         }
     
     @RequestMapping(path = "/error",method = RequestMethod.GET)
     public String getErrorPage(){
         return "/error/500";
+    }
+
+
+    //拒绝访问时的提示页面
+    @RequestMapping(path = "/denied", method = {RequestMethod.GET})
+    public String getDeniedPage() {
+        return "/error/404";
     }
 }

@@ -9,8 +9,6 @@ import com.lf.community.service.UserService;
 import com.lf.community.util.CommunityConstant;
 import com.lf.community.util.CommunityUtil;
 import com.lf.community.util.HostHolder;
-import jdk.nashorn.internal.runtime.FindProperty;
-import org.apache.tomcat.util.http.parser.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

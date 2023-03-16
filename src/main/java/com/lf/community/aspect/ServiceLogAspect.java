@@ -1,14 +1,11 @@
 package com.lf.community.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
+
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -23,8 +20,8 @@ import java.util.Date;
  * @Create 2023/3/8 0008 22:41
  * @Version 1.0
  */
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class ServiceLogAspect {
     
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);

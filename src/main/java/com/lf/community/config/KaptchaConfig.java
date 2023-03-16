@@ -3,7 +3,6 @@ package com.lf.community.config;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -30,7 +30,7 @@ public class MapperTest {
     private MessageMapper messageMapper;
     @Test
     public void test(){
-        List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(149, 0, 10);
+        List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(149, 0, 10,0);
         for(DiscussPost discussPost : discussPosts){
             System.out.println(discussPost);
         }
